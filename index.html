@@ -253,14 +253,167 @@
             50% { transform: translateY(-20px) rotate(5deg); }
         }
 
+        /* RSVP Counter */
+        .rsvp-counter {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .rsvp-counter span {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        /* Photo Upload Section */
+        .photo-upload {
+            margin-top: 2rem;
+            background: var(--accent);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--gold);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-area small {
+            opacity: 0.7;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Video Message Wall */
+        .video-wall {
+            margin-top: 3rem;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .video-item {
+            background: var(--accent);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-item video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-author {
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-message {
+            font-size: 0.9rem;
+        }
+
+        .record-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .record-btn i {
+            font-size: 1.2rem;
+        }
+
+        .recording {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .about-content { flex-direction: column; }
             .countdown { flex-wrap: wrap; justify-content: center; }
             .countdown-item { min-width: 80px; }
+            .video-container { grid-template-columns: 1fr; }
         }
     </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Hero Section -->
@@ -290,6 +443,11 @@
                 <div class="countdown-number" id="seconds">00</div>
                 <div class="countdown-label">Seconds</div>
             </div>
+        </div>
+
+        <!-- RSVP Counter -->
+        <div class="rsvp-counter">
+            <span id="rsvp-count">42</span> guests have RSVP'd
         </div>
     </section>
 
@@ -328,11 +486,56 @@
         </div>
     </section>
 
+    <!-- Photo Upload Section -->
+    <section class="section" id="photos">
+        <h2 class="section-title">Share Your Photos</h2>
+        <div class="photo-upload">
+            <div class="upload-area" id="upload-area">
+                <i class="fas fa-camera-retro"></i>
+                <p>Click to upload your party photos</p>
+                <small>JPEG or PNG, max 5MB each</small>
+                <input type="file" id="file-input" accept="image/*" multiple>
+            </div>
+            <div class="preview-container" id="preview-container"></div>
+            <button class="btn" id="upload-btn" style="display: none;">Upload Photos</button>
+        </div>
+    </section>
+
     <!-- Spotify Playlist Section -->
     <section class="section" id="music">
         <h2 class="section-title">Party Playlist</h2>
         <div class="spotify-container">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Video Message Wall -->
+    <section class="section" id="video-wall">
+        <h2 class="section-title">Video Messages</h2>
+        <div class="memory-form">
+            <input type="text" id="video-name" placeholder="Your Name">
+            <textarea id="video-message" placeholder="Your message (will appear with your video)"></textarea>
+            <div class="record-btn">
+                <button class="btn" id="start-record"><i class="fas fa-video"></i> Record Video</button>
+                <button class="btn" id="stop-record" disabled><i class="fas fa-stop"></i> Stop</button>
+            </div>
+            <video id="video-preview" controls style="display: none; width: 100%; margin-top: 1rem;"></video>
+            <button class="btn" id="submit-video" style="display: none; margin-top: 1rem;">Submit Video Message</button>
+        </div>
+        <div class="video-wall">
+            <div class="video-container" id="video-container">
+                <!-- Sample video message -->
+                <div class="video-item">
+                    <video controls>
+                        <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <div class="video-author">Sarah</div>
+                        <div class="video-message">Happy Birthday Joe! Can't wait to celebrate with you!</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -364,7 +567,7 @@
             <p><strong>📅 Date:</strong> 20/09/2025</p>
             <p><strong>⏰ Time:</strong> 3pm til late</p>
             <p><strong>🎉 Dress Code:</strong> Casual, Semi-Formal</p>
-            <button class="btn" style="margin-top: 1.5rem;">RSVP Now</button>
+            <button class="btn" id="rsvp-btn" style="margin-top: 1.5rem;">RSVP Now</button>
         </div>
     </section>
 
@@ -448,7 +651,213 @@
                 animation.onfinish = () => confetti.remove();
             }
         }
+
+        // RSVP Counter
+        let rsvpCount = 42;
+        const rsvpBtn = document.getElementById('rsvp-btn');
+        const rsvpCountElement = document.getElementById('rsvp-count');
+        
+        rsvpBtn.addEventListener('click', function() {
+            // Simulate RSVP
+            rsvpCount++;
+            rsvpCountElement.textContent = rsvpCount;
+            
+            // Change button text
+            rsvpBtn.textContent = 'Thanks for RSVPing!';
+            rsvpBtn.style.backgroundColor = '#4CAF50';
+            
+            // Create confetti
+            createConfetti();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                rsvpBtn.textContent = 'RSVP Now';
+                rsvpBtn.style.backgroundColor = 'var(--gold)';
+            }, 3000);
+        });
+
+        // Photo Upload Functionality
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const previewContainer = document.getElementById('preview-container');
+        const uploadBtn = document.getElementById('upload-btn');
+        let selectedFiles = [];
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            // Filter for images only
+            const imageFiles = files.filter(file => file.type.startsWith('image/'));
+            
+            // Check file sizes
+            const validFiles = imageFiles.filter(file => file.size <= 5 * 1024 * 1024);
+            
+            if (validFiles.length < imageFiles.length) {
+                alert('Some files were too large (max 5MB) and were not selected.');
+            }
+            
+            selectedFiles = [...selectedFiles, ...validFiles];
+            updatePreview();
+        });
+
+        function updatePreview() {
+            previewContainer.innerHTML = '';
+            
+            if (selectedFiles.length === 0) {
+                uploadBtn.style.display = 'none';
+                return;
+            }
+            
+            uploadBtn.style.display = 'block';
+            
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.innerHTML = '&times;';
+                    removeBtn.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        selectedFiles.splice(index, 1);
+                        updatePreview();
+                    });
+                    
+                    previewItem.appendChild(img);
+                    previewItem.appendChild(removeBtn);
+                    previewContainer.appendChild(previewItem);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        uploadBtn.addEventListener('click', function() {
+            if (selectedFiles.length === 0) return;
+            
+            // In a real app, you would upload files to a server here
+            alert(`${selectedFiles.length} photos will be uploaded! (This is a demo - no actual upload occurs)`);
+            
+            // Reset after "upload"
+            selectedFiles = [];
+            fileInput.value = '';
+            updatePreview();
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.textContent = 'Photos uploaded successfully!';
+            successMsg.style.color = 'var(--gold)';
+            successMsg.style.textAlign = 'center';
+            successMsg.style.marginTop = '1rem';
+            previewContainer.appendChild(successMsg);
+            
+            setTimeout(() => {
+                successMsg.remove();
+            }, 3000);
+        });
+
+        // Video Message Functionality
+        const startRecordBtn = document.getElementById('start-record');
+        const stopRecordBtn = document.getElementById('stop-record');
+        const videoPreview = document.getElementById('video-preview');
+        const submitVideoBtn = document.getElementById('submit-video');
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        startRecordBtn.addEventListener('click', async function() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                videoPreview.srcObject = stream;
+                videoPreview.style.display = 'block';
+                
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = function(e) {
+                    if (e.data.size > 0) {
+                        recordedChunks.push(e.data);
+                    }
+                };
+                
+                mediaRecorder.onstop = function() {
+                    const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const videoUrl = URL.createObjectURL(videoBlob);
+                    videoPreview.srcObject = null;
+                    videoPreview.src = videoUrl;
+                    videoPreview.controls = true;
+                    submitVideoBtn.style.display = 'block';
+                };
+                
+                mediaRecorder.start();
+                startRecordBtn.disabled = true;
+                stopRecordBtn.disabled = false;
+                startRecordBtn.classList.add('recording');
+            } catch (err) {
+                console.error('Error accessing media devices:', err);
+                alert('Could not access camera/microphone. Please check permissions.');
+            }
+        });
+
+        stopRecordBtn.addEventListener('click', function() {
+            mediaRecorder.stop();
+            startRecordBtn.disabled = false;
+            stopRecordBtn.disabled = true;
+            startRecordBtn.classList.remove('recording');
+            
+            // Stop all tracks in the stream
+            videoPreview.srcObject.getTracks().forEach(track => track.stop());
+        });
+
+        submitVideoBtn.addEventListener('click', function() {
+            const name = document.getElementById('video-name').value || 'Anonymous';
+            const message = document.getElementById('video-message').value || 'No message';
+            
+            if (!videoPreview.src) return;
+            
+            // In a real app, you would upload the video to a server here
+            // For demo purposes, we'll just add it to the page
+            
+            const videoContainer = document.getElementById('video-container');
+            const newVideoItem = document.createElement('div');
+            newVideoItem.className = 'video-item';
+            
+            const videoElement = document.createElement('video');
+            videoElement.controls = true;
+            videoElement.src = videoPreview.src;
+            
+            const videoInfo = document.createElement('div');
+            videoInfo.className = 'video-info';
+            
+            const videoAuthor = document.createElement('div');
+            videoAuthor.className = 'video-author';
+            videoAuthor.textContent = name;
+            
+            const videoMessage = document.createElement('div');
+            videoMessage.className = 'video-message';
+            videoMessage.textContent = message;
+            
+            videoInfo.appendChild(videoAuthor);
+            videoInfo.appendChild(videoMessage);
+            newVideoItem.appendChild(videoElement);
+            newVideoItem.appendChild(videoInfo);
+            
+            videoContainer.prepend(newVideoItem);
+            
+            // Reset form
+            document.getElementById('video-name').value = '';
+            document.getElementById('video-message').value = '';
+            videoPreview.src = '';
+            videoPreview.style.display = 'none';
+            submitVideoBtn.style.display = 'none';
+            recordedChunks = [];
+            
+            // Show success message
+            createConfetti();
+        });
     </script>
 </body>
 </html>
-
