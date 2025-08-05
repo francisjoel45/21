@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21st Birthday | [Joe]</title>
+    <title>21st Birthday | Joe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -172,6 +172,15 @@
             transform: scale(1.1);
         }
 
+        /* Spotify Section */
+        .spotify-container {
+            margin: 3rem auto;
+            max-width: 800px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
         /* Memories Section */
         .memory-form {
             margin-top: 2rem;
@@ -290,9 +299,9 @@
         <div class="about-content">
             <div class="about-text">
                 <p>Turning 21 is a milestone—a celebration of growth, achievements, and new beginnings. This year marks the start of a new chapter filled with opportunities and adventures.</p>
-                <p>I’m grateful for all the experiences that have shaped me and excited for what’s to come. Let’s make this birthday unforgettable!</p>
-                <p><strong>Birthday:</strong> [Your Birthday]</p>
-                <p><strong>Favorite Drink:</strong> [Delmonte, Kc, Cocktail, etc.]</p>
+                <p>I'm grateful for all the experiences that have shaped me and excited for what's to come. Let's make this birthday unforgettable!</p>
+                <p><strong>Birthday:</strong> September 20, 2025</p>
+                <p><strong>Favorite Drink:</strong> Delmonte, KC, Cocktail, etc.</p>
             </div>
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Birthday Person">
@@ -319,6 +328,14 @@
         </div>
     </section>
 
+    <!-- Spotify Playlist Section -->
+    <section class="section" id="music">
+        <h2 class="section-title">Party Playlist</h2>
+        <div class="spotify-container">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </section>
+
     <!-- Memory Wall -->
     <section class="section" id="memories">
         <h2 class="section-title">Leave a Toast</h2>
@@ -330,7 +347,7 @@
         <div class="memory-wall" id="memory-wall">
             <div class="memory">
                 <div class="memory-author">Alex</div>
-                <div class="memory-text">Happy 21st! Let’s make this year legendary. First round’s on me!</div>
+                <div class="memory-text">Happy 21st! Let's make this year legendary. First round's on me!</div>
             </div>
             <div class="memory">
                 <div class="memory-author">Jordan</div>
@@ -343,10 +360,10 @@
     <section class="section" id="event">
         <h2 class="section-title">Celebration Details</h2>
         <div class="about-text">
-            <p><strong>📍 Venue:</strong> [Greatwall]</p>
-            <p><strong>📅 Date:</strong> [20/09/2025]</p>
-            <p><strong>⏰ Time:</strong> [3pm til late]</p>
-            <p><strong>🎉 Dress Code:</strong> [Casual, Semi-Formal, etc.]</p>
+            <p><strong>📍 Venue:</strong> Greatwall</p>
+            <p><strong>📅 Date:</strong> 20/09/2025</p>
+            <p><strong>⏰ Time:</strong> 3pm til late</p>
+            <p><strong>🎉 Dress Code:</strong> Casual, Semi-Formal</p>
             <button class="btn" style="margin-top: 1.5rem;">RSVP Now</button>
         </div>
     </section>
@@ -354,7 +371,7 @@
     <script>
         // Countdown Timer
         function updateCountdown() {
-            const birthday = new Date(2025, 09, 19); // Update with your birthday (YYYY, MM-1, DD)
+            const birthday = new Date(2025, 8, 20); // Note: Months are 0-indexed (8 = September)
             const now = new Date();
             
             if (now > birthday) {
@@ -433,5 +450,4 @@
         }
     </script>
 </body>
-
 </html>
