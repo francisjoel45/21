@@ -190,59 +190,70 @@
             display: block;
         }
 
-        /* Gallery Section */
-        .gallery {
+        /* Places for Memories Section */
+        .places-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .gallery-item {
-            position: relative;
+        .place-card {
+            background: var(--accent);
+            border-radius: 10px;
             overflow: hidden;
-            border-radius: 8px;
-            height: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
 
-        .gallery-item:hover {
+        .place-card:hover {
             transform: translateY(-5px);
         }
 
-        .gallery-item img {
+        .place-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .place-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .place-card:hover .place-image img {
+            transform: scale(1.05);
         }
 
-        .view-more {
-            text-align: center;
-            margin-top: 2rem;
+        .place-info {
+            padding: 1.5rem;
         }
 
-        .view-more-btn {
-            background: transparent;
+        .place-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 0.8rem 2rem;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .view-more-btn:hover {
-            background: var(--gold);
-            color: var(--dark);
+        .place-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .place-location i {
+            color: var(--gold);
+        }
+
+        .place-description {
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
         /* Memories Section */
@@ -366,7 +377,7 @@
             .about-content { flex-direction: column; }
             .countdown { flex-wrap: wrap; justify-content: center; }
             .countdown-item { min-width: 80px; }
-            .gallery { grid-template-columns: 1fr; }
+            .places-container { grid-template-columns: 1fr; }
         }
     </style>
     <!-- Font Awesome for icons -->
@@ -439,24 +450,54 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <h2 class="section-title">Memories</h2>
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Memory 1">
+    <!-- Places for Memories Section -->
+    <section class="section" id="places">
+        <h2 class="section-title">Places for Memories</h2>
+        <div class="places-container">
+            <div class="place-card">
+                <div class="place-image">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Beach Sunset">
+                </div>
+                <div class="place-info">
+                    <h3 class="place-name">Sunset Beach</h3>
+                    <div class="place-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Malibu, California</span>
+                    </div>
+                    <p class="place-description">Where I spent my most peaceful evenings watching the sun dip below the horizon, with the sound of waves as my soundtrack.</p>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 2">
+            
+            <div class="place-card">
+                <div class="place-image">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80" alt="Mountain Cabin">
+                </div>
+                <div class="place-info">
+                    <h3 class="place-name">Grandma's Cabin</h3>
+                    <div class="place-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Rocky Mountains, Colorado</span>
+                    </div>
+                    <p class="place-description">My childhood summer retreat filled with warmth, homemade cookies, and endless adventures in the woods.</p>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 3">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Memory 4">
+            
+            <div class="place-card">
+                <div class="place-image">
+                    <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="College Campus">
+                </div>
+                <div class="place-info">
+                    <h3 class="place-name">University Quad</h3>
+                    <div class="place-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Stanford University</span>
+                    </div>
+                    <p class="place-description">Where I met lifelong friends, discovered my passions, and grew into who I am today.</p>
+                </div>
             </div>
         </div>
     </section>
+
     <!-- Memory Wall -->
     <section class="section" id="memories">
         <h2 class="section-title">Leave a Toast</h2>
@@ -527,14 +568,6 @@
                 document.body.classList.remove('admin-mode');
             }
         }
-
-        // Smooth scrolling for gallery link
-        document.querySelector('a[href="#full-gallery"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
 
         // Countdown Timer
         function updateCountdown() {
