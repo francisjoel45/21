@@ -190,6 +190,61 @@
             display: block;
         }
 
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 300px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .view-more-btn {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        .view-more-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
         /* Memories Section */
         .memory-form {
             margin-top: 2rem;
@@ -311,6 +366,7 @@
             .about-content { flex-direction: column; }
             .countdown { flex-wrap: wrap; justify-content: center; }
             .countdown-item { min-width: 80px; }
+            .gallery { grid-template-columns: 1fr; }
         }
     </style>
     <!-- Font Awesome for icons -->
@@ -383,6 +439,24 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <h2 class="section-title">Memories</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Memory 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Memory 4">
+            </div>
+        </div>
+    </section>
     <!-- Memory Wall -->
     <section class="section" id="memories">
         <h2 class="section-title">Leave a Toast</h2>
@@ -453,6 +527,14 @@
                 document.body.classList.remove('admin-mode');
             }
         }
+
+        // Smooth scrolling for gallery link
+        document.querySelector('a[href="#full-gallery"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
 
         // Countdown Timer
         function updateCountdown() {
