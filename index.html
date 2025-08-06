@@ -190,46 +190,6 @@
             display: block;
         }
 
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 300px;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Spotify Section */
-        .spotify-container {
-            margin: 3rem auto;
-            max-width: 800px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
         /* Memories Section */
         .memory-form {
             margin-top: 2rem;
@@ -270,6 +230,11 @@
 
         .memory-wall {
             margin-top: 3rem;
+            display: none; /* Hidden by default */
+        }
+
+        .admin-mode .memory-wall {
+            display: block; /* Only visible in admin mode */
         }
 
         .memory {
@@ -301,11 +266,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            display: none;
-        }
-
-        .admin-mode .delete-btn {
-            display: flex;
         }
 
         /* Floating Champagne Glasses */
@@ -337,141 +297,12 @@
             font-size: 2rem;
         }
 
-        /* Photo Upload Section */
-        .photo-upload {
-            margin-top: 2rem;
-            background: var(--accent);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .upload-area {
-            border: 2px dashed var(--gold);
-            border-radius: 8px;
-            padding: 2rem;
+        /* Success Message */
+        .success-message {
+            color: var(--gold);
             text-align: center;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .upload-area:hover {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .upload-area i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .upload-area p {
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-area small {
-            opacity: 0.7;
-        }
-
-        #file-input {
+            margin-top: 1rem;
             display: none;
-        }
-
-        .preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .preview-item {
-            width: 100px;
-            height: 100px;
-            position: relative;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .preview-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        /* Video Message Wall */
-        .video-wall {
-            margin-top: 3rem;
-        }
-
-        .video-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .video-item {
-            background: var(--accent);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .video-item video {
-            width: 100%;
-            display: block;
-        }
-
-        .video-info {
-            padding: 1rem;
-        }
-
-        .video-author {
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .video-message {
-            font-size: 0.9rem;
-        }
-
-        .record-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .record-btn i {
-            font-size: 1.2rem;
-        }
-
-        .recording {
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
         }
 
         /* Responsive */
@@ -480,7 +311,6 @@
             .about-content { flex-direction: column; }
             .countdown { flex-wrap: wrap; justify-content: center; }
             .countdown-item { min-width: 80px; }
-            .video-container { grid-template-columns: 1fr; }
         }
     </style>
     <!-- Font Awesome for icons -->
@@ -553,79 +383,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <h2 class="section-title">Memories</h2>
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Memory 1">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 2">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Memory 3">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Memory 4">
-            </div>
-        </div>
-    </section>
-
-    <!-- Photo Upload Section -->
-    <section class="section" id="photos">
-        <h2 class="section-title">Share Your Photos</h2>
-        <div class="photo-upload">
-            <div class="upload-area" id="upload-area">
-                <i class="fas fa-camera-retro"></i>
-                <p>Click to upload your party photos</p>
-                <small>JPEG or PNG, max 5MB each</small>
-                <input type="file" id="file-input" accept="image/*" multiple>
-            </div>
-            <div class="preview-container" id="preview-container"></div>
-            <button class="btn" id="upload-btn" style="display: none;">Upload Photos</button>
-        </div>
-    </section>
-
-    <!-- Spotify Playlist Section -->
-    <section class="section" id="music">
-        <h2 class="section-title">Party Playlist</h2>
-        <div class="spotify-container">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <!-- Video Message Wall -->
-    <section class="section" id="video-wall">
-        <h2 class="section-title">Video Messages</h2>
-        <div class="memory-form">
-            <input type="text" id="video-name" placeholder="Your Name">
-            <textarea id="video-message" placeholder="Your message (will appear with your video)"></textarea>
-            <div class="record-btn">
-                <button class="btn" id="start-record"><i class="fas fa-video"></i> Record Video</button>
-                <button class="btn" id="stop-record" disabled><i class="fas fa-stop"></i> Stop</button>
-            </div>
-            <video id="video-preview" controls style="display: none; width: 100%; margin-top: 1rem;"></video>
-            <button class="btn" id="submit-video" style="display: none; margin-top: 1rem;">Submit Video Message</button>
-        </div>
-        <div class="video-wall">
-            <div class="video-container" id="video-container">
-                <!-- Sample video message -->
-                <div class="video-item">
-                    <video controls>
-                        <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-info">
-                        <div class="video-author">Sarah</div>
-                        <div class="video-message">Happy Birthday Joe! Can't wait to celebrate with you!</div>
-                    </div>
-                    <button class="delete-btn" onclick="deleteVideo(this)">&times;</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Memory Wall -->
     <section class="section" id="memories">
         <h2 class="section-title">Leave a Toast</h2>
@@ -633,18 +390,12 @@
             <input type="text" id="memory-name" placeholder="Your Name">
             <textarea id="memory-text" placeholder="Share a memory, wish, or toast..."></textarea>
             <button class="btn" onclick="addMemory()">Raise a Glass</button>
+            <div class="success-message" id="success-message">
+                <i class="fas fa-check-circle"></i> Your toast has been submitted!
+            </div>
         </div>
         <div class="memory-wall" id="memory-wall">
-            <div class="memory">
-                <div class="memory-author">Alex</div>
-                <div class="memory-text">Happy 21st! Let's make this year legendary. First round's on me!</div>
-                <button class="delete-btn" onclick="deleteMemory(this)">&times;</button>
-            </div>
-            <div class="memory">
-                <div class="memory-author">Jordan</div>
-                <div class="memory-text">Welcome to the club! Cheers to good times ahead.</div>
-                <button class="delete-btn" onclick="deleteMemory(this)">&times;</button>
-            </div>
+            <!-- Messages will appear here only for admin -->
         </div>
     </section>
 
@@ -665,6 +416,7 @@
         const ADMIN_PASSWORD = "birthday123"; // Change this to your desired password
         let isAdmin = false;
         let adminMode = false;
+        let messages = []; // Store all messages in memory
 
         // Show admin bar but keep it hidden until login
         document.getElementById('admin-bar').classList.add('active');
@@ -676,6 +428,8 @@
                 document.getElementById('admin-login-form').style.display = 'none';
                 document.getElementById('admin-actions').style.display = 'block';
                 alert('Admin login successful!');
+                // Load any existing messages
+                renderMessages();
             } else {
                 alert('Incorrect password');
             }
@@ -694,6 +448,7 @@
             adminMode = !adminMode;
             if (adminMode) {
                 document.body.classList.add('admin-mode');
+                renderMessages();
             } else {
                 document.body.classList.remove('admin-mode');
             }
@@ -731,39 +486,63 @@
             
             if (!text.trim()) return;
             
-            const memoryWall = document.getElementById('memory-wall');
-            const newMemory = document.createElement('div');
-            newMemory.className = 'memory';
-            newMemory.innerHTML = `
-                <div class="memory-author">${name}</div>
-                <div class="memory-text">${text}</div>
-                <button class="delete-btn" onclick="deleteMemory(this)">&times;</button>
-            `;
+            // Add to messages array
+            const newMessage = {
+                name: name,
+                text: text,
+                timestamp: new Date().toISOString()
+            };
+            messages.push(newMessage);
             
-            memoryWall.prepend(newMemory);
+            // Show success message
+            const successMsg = document.getElementById('success-message');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
             
             // Clear form
             document.getElementById('memory-text').value = '';
             document.getElementById('memory-name').value = '';
             
+            // If admin is viewing, update the display
+            if (isAdmin && adminMode) {
+                renderMessages();
+            }
+            
             // Confetti effect
             createConfetti();
         }
         
-        // Delete Memory Function
-        function deleteMemory(button) {
-            if (isAdmin && adminMode) {
-                if (confirm('Are you sure you want to delete this memory?')) {
-                    button.parentElement.remove();
-                }
+        // Render messages (only for admin)
+        function renderMessages() {
+            const memoryWall = document.getElementById('memory-wall');
+            memoryWall.innerHTML = '';
+            
+            if (messages.length === 0) {
+                memoryWall.innerHTML = '<p>No messages yet.</p>';
+                return;
             }
+            
+            // Display messages in reverse order (newest first)
+            messages.slice().reverse().forEach((message, index) => {
+                const newMemory = document.createElement('div');
+                newMemory.className = 'memory';
+                newMemory.innerHTML = `
+                    <div class="memory-author">${message.name}</div>
+                    <div class="memory-text">${message.text}</div>
+                    <button class="delete-btn" onclick="deleteMemory(${messages.length - 1 - index})">&times;</button>
+                `;
+                memoryWall.appendChild(newMemory);
+            });
         }
-
-        // Delete Video Function
-        function deleteVideo(button) {
+        
+        // Delete Memory Function
+        function deleteMemory(index) {
             if (isAdmin && adminMode) {
-                if (confirm('Are you sure you want to delete this video?')) {
-                    button.parentElement.remove();
+                if (confirm('Are you sure you want to delete this message?')) {
+                    messages.splice(index, 1);
+                    renderMessages();
                 }
             }
         }
@@ -820,195 +599,6 @@
                 rsvpBtn.textContent = 'RSVP Now';
                 rsvpBtn.style.backgroundColor = 'var(--gold)';
             }, 3000);
-        });
-
-        // Photo Upload Functionality
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const previewContainer = document.getElementById('preview-container');
-        const uploadBtn = document.getElementById('upload-btn');
-        let selectedFiles = [];
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            
-            // Filter for images only
-            const imageFiles = files.filter(file => file.type.startsWith('image/'));
-            
-            // Check file sizes
-            const validFiles = imageFiles.filter(file => file.size <= 5 * 1024 * 1024);
-            
-            if (validFiles.length < imageFiles.length) {
-                alert('Some files were too large (max 5MB) and were not selected.');
-            }
-            
-            selectedFiles = [...selectedFiles, ...validFiles];
-            updatePreview();
-        });
-
-        function updatePreview() {
-            previewContainer.innerHTML = '';
-            
-            if (selectedFiles.length === 0) {
-                uploadBtn.style.display = 'none';
-                return;
-            }
-            
-            uploadBtn.style.display = 'block';
-            
-            selectedFiles.forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const previewItem = document.createElement('div');
-                    previewItem.className = 'preview-item';
-                    
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'remove-btn';
-                    removeBtn.innerHTML = '&times;';
-                    removeBtn.addEventListener('click', (event) => {
-                        event.stopPropagation();
-                        selectedFiles.splice(index, 1);
-                        updatePreview();
-                    });
-                    
-                    previewItem.appendChild(img);
-                    previewItem.appendChild(removeBtn);
-                    previewContainer.appendChild(previewItem);
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        uploadBtn.addEventListener('click', function() {
-            if (selectedFiles.length === 0) return;
-            
-            // In a real app, you would upload files to a server here
-            alert(`${selectedFiles.length} photos will be uploaded! (This is a demo - no actual upload occurs)`);
-            
-            // Reset after "upload"
-            selectedFiles = [];
-            fileInput.value = '';
-            updatePreview();
-            
-            // Show success message
-            const successMsg = document.createElement('div');
-            successMsg.textContent = 'Photos uploaded successfully!';
-            successMsg.style.color = 'var(--gold)';
-            successMsg.style.textAlign = 'center';
-            successMsg.style.marginTop = '1rem';
-            previewContainer.appendChild(successMsg);
-            
-            setTimeout(() => {
-                successMsg.remove();
-            }, 3000);
-        });
-
-        // Video Message Functionality
-        const startRecordBtn = document.getElementById('start-record');
-        const stopRecordBtn = document.getElementById('stop-record');
-        const videoPreview = document.getElementById('video-preview');
-        const submitVideoBtn = document.getElementById('submit-video');
-        let mediaRecorder;
-        let recordedChunks = [];
-
-        startRecordBtn.addEventListener('click', async function() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-                videoPreview.srcObject = stream;
-                videoPreview.style.display = 'block';
-                
-                mediaRecorder = new MediaRecorder(stream);
-                mediaRecorder.ondataavailable = function(e) {
-                    if (e.data.size > 0) {
-                        recordedChunks.push(e.data);
-                    }
-                };
-                
-                mediaRecorder.onstop = function() {
-                    const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
-                    const videoUrl = URL.createObjectURL(videoBlob);
-                    videoPreview.srcObject = null;
-                    videoPreview.src = videoUrl;
-                    videoPreview.controls = true;
-                    submitVideoBtn.style.display = 'block';
-                };
-                
-                mediaRecorder.start();
-                startRecordBtn.disabled = true;
-                stopRecordBtn.disabled = false;
-                startRecordBtn.classList.add('recording');
-            } catch (err) {
-                console.error('Error accessing media devices:', err);
-                alert('Could not access camera/microphone. Please check permissions.');
-            }
-        });
-
-        stopRecordBtn.addEventListener('click', function() {
-            mediaRecorder.stop();
-            startRecordBtn.disabled = false;
-            stopRecordBtn.disabled = true;
-            startRecordBtn.classList.remove('recording');
-            
-            // Stop all tracks in the stream
-            videoPreview.srcObject.getTracks().forEach(track => track.stop());
-        });
-
-        submitVideoBtn.addEventListener('click', function() {
-            const name = document.getElementById('video-name').value || 'Anonymous';
-            const message = document.getElementById('video-message').value || 'No message';
-            
-            if (!videoPreview.src) return;
-            
-            // In a real app, you would upload the video to a server here
-            // For demo purposes, we'll just add it to the page
-            
-            const videoContainer = document.getElementById('video-container');
-            const newVideoItem = document.createElement('div');
-            newVideoItem.className = 'video-item';
-            
-            const videoElement = document.createElement('video');
-            videoElement.controls = true;
-            videoElement.src = videoPreview.src;
-            
-            const videoInfo = document.createElement('div');
-            videoInfo.className = 'video-info';
-            
-            const videoAuthor = document.createElement('div');
-            videoAuthor.className = 'video-author';
-            videoAuthor.textContent = name;
-            
-            const videoMessage = document.createElement('div');
-            videoMessage.className = 'video-message';
-            videoMessage.textContent = message;
-            
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-btn';
-            deleteBtn.innerHTML = '&times;';
-            deleteBtn.onclick = function() { deleteVideo(this); };
-            
-            videoInfo.appendChild(videoAuthor);
-            videoInfo.appendChild(videoMessage);
-            newVideoItem.appendChild(videoElement);
-            newVideoItem.appendChild(videoInfo);
-            newVideoItem.appendChild(deleteBtn);
-            
-            videoContainer.prepend(newVideoItem);
-            
-            // Reset form
-            document.getElementById('video-name').value = '';
-            document.getElementById('video-message').value = '';
-            videoPreview.src = '';
-            videoPreview.style.display = 'none';
-            submitVideoBtn.style.display = 'none';
-            recordedChunks = [];
-            
-            // Show success message
-            createConfetti();
         });
     </script>
 </body>
