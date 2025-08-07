@@ -86,7 +86,7 @@
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
+                        url('me.jpeg') no-repeat center/cover;
             position: relative;
         }
 
@@ -531,7 +531,9 @@
         const ADMIN_PASSWORD = "birthday123"; // Change this to your desired password
         let isAdmin = false;
         let adminMode = false;
-        let messages = []; // Store all messages in memory
+        
+        // Load messages from localStorage or initialize empty array
+        let messages = JSON.parse(localStorage.getItem('birthdayMessages')) || [];
 
         // Show admin bar but keep it hidden until login
         document.getElementById('admin-bar').classList.add('active');
@@ -609,6 +611,9 @@
             };
             messages.push(newMessage);
             
+            // Save to localStorage
+            localStorage.setItem('birthdayMessages', JSON.stringify(messages));
+            
             // Show success message
             const successMsg = document.getElementById('success-message');
             successMsg.style.display = 'block';
@@ -657,6 +662,8 @@
             if (isAdmin && adminMode) {
                 if (confirm('Are you sure you want to delete this message?')) {
                     messages.splice(index, 1);
+                    // Update localStorage after deletion
+                    localStorage.setItem('birthdayMessages', JSON.stringify(messages));
                     renderMessages();
                 }
             }
